@@ -28,3 +28,15 @@ class ClassDES:
             plaintext += des.decrypt(cipherText[i:i+8])
         unpad = plaintext[:-ord(plaintext[len(plaintext) - 1:])]
         return unpad
+
+plaintext = 'this is a test'
+key = '0123456789abcdef'
+ciphertext = ''
+f = open("test.txt", "w")
+
+des = ClassDES()
+
+des.setKey(key)
+ciphertext = des.encrypt(plaintext)
+print ciphertext
+f.write(ciphertext)
