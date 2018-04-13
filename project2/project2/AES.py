@@ -11,13 +11,18 @@ class classAES:
 
   #Encrypt Function
   def encrypt(self, plaintext):
-    obj1 = AES.new(self.key, AES.MODE_ECB)
-    ciphertext = obj1.encrypt(plaintext)
+    pad = 16 - (len(plaintext) % 16)
+    data = plaintext + chr(pad)*pad
+    aes = AES.new(self.key, AES.MODE_ECB)
+    ciphertext = ''
+    for i in range(0, len(data), 16):
+        ciphertext += aes.encrypt(data[i:i+16])
     return ciphertext
 
   #Decrypt Function
   def decrypt(self, ciphertext):
-    obj2 = AES.new(self.key, AES.MODE_ECB)
-    outputBytes = obj2.decrypt(ciphertext)
-    outputString = str(outputBytes)
-    return outputString
+    aes = AES.new(self.key, AES.MODE_ECB)
+    plaintext = ''
+    for i in range(0, len(ciphertext), 16):
+        plaintext += aes.decrypt(ciphertext[i:i+16])
+    return plaintext[:-ord(plaintext[len(plaintext) - 1])]

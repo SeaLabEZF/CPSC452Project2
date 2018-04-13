@@ -14,10 +14,10 @@ else:
     arg5 = sys.argv[5]  #output file
     # DES Cipher
     if arg1 == 'DES':
-        cipher_type = fileDES.classDES()
+        cipher_type = DES.classDES()
     # AES Cipher
-    if arg1 == 'AES':
-        cipher_type = fileAES.classAES()
+    elif arg1 == 'AES':
+        cipher_type = AES.classAES()
     # Invalid Input
     else:
         print "Unrecognized cipher type, check your spelling and try again."

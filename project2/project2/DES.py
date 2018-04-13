@@ -1,13 +1,14 @@
 from Crypto.Cipher import DES
 import binascii
 
-class ClassDES:
+class classDES:
 
     def __init__(self):
         self.key = ''
 
     def setKey(self, key):
         self.key = binascii.unhexlify(key)
+        return True
 
     def encrypt(self, plainText):
         des = DES.new(self.key, DES.MODE_ECB)
@@ -18,7 +19,6 @@ class ClassDES:
         cipherText = ''
         for i in range(0, len(data), 8):
             cipherText += des.encrypt(data[i:i+8])
-        print len(cipherText)
         return cipherText
 
     def decrypt(self, cipherText):
@@ -26,7 +26,6 @@ class ClassDES:
         plaintext = ''
         for i in range(0, len(cipherText), 8):
             plaintext += des.decrypt(cipherText[i:i+8])
-        unpad = plaintext[:-ord(plaintext[len(plaintext) - 1:])]
-        return unpad
+        return plaintext[:-ord(plaintext[len(plaintext) - 1:])]
 
 
