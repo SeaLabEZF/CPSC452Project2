@@ -4,6 +4,10 @@ import binascii
 class classDES:
 
     def setKey(self, key):
+        check = ['a','b','c','d','e','f','0','1','2','3','4','5','6','7','8','9']
+        for i in key:
+            if i not in check:
+                return False
         self.key = binascii.unhexlify(key)
         return (len(key) == 16)
 
