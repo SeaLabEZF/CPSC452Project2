@@ -3,12 +3,9 @@ import binascii
 
 class classDES:
 
-    def __init__(self):
-        self.key = ''
-
     def setKey(self, key):
         self.key = binascii.unhexlify(key)
-        return True
+        return (len(key) == 16)
 
     def encrypt(self, plainText):
         des = DES.new(self.key, DES.MODE_ECB)

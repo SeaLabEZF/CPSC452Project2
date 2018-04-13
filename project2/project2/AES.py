@@ -4,10 +4,10 @@ from Crypto.Cipher import AES
 
 class classAES:
   #Set Key Function
-  def setKey(self, theKey):
+  def setKey(self, key):
     #write an if statement to make sure key is 128 bits (16 bytes) long
-    self.key = theKey
-    return True
+    self.key = key
+    return (len(key) == 16)
 
   #Encrypt Function
   def encrypt(self, plaintext):
